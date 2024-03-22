@@ -6,7 +6,6 @@ use App\Models\ErrorReport;
 use App\Models\ReportError;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Collection;
 use ProtoneMedia\Splade\AbstractTable;
 use ProtoneMedia\Splade\SpladeTable;
 use Spatie\QueryBuilder\AllowedFilter;
@@ -42,16 +41,17 @@ class ErrorReports extends AbstractTable
     public function for()
     {
         $globalSearch = AllowedFilter::callback('global', function ($query, $value) {
-            $query->where(function ($query) use ($value) {
-                Collection::wrap($value)->each(function ($value) use ($query) {
-                    $query
-                        ->orWhere('title', 'LIKE', "%{$value}%")
-                        ->orWhere('code', 'LIKE', "%{$value}%")
-                        ->orWhere('url', 'LIKE', "%{$value}%")
-                        ->orWhere('ip', 'LIKE', "%{$value}%")
-                        ->orWhere('device', 'LIKE', "%{$value}%");
-                });
-            });
+            $query->whereAny(
+                [
+                    'title',
+                    'code',
+                    'url',
+                    'ip',
+                    'device'
+                ],
+                'LIKE',
+                "%{$value}%"
+            );
         });
 
         return QueryBuilder::for(ReportError::class)

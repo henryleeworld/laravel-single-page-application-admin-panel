@@ -5,7 +5,6 @@ namespace App\Tables;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Collection;
 use ProtoneMedia\Splade\AbstractTable;
 use ProtoneMedia\Splade\SpladeTable;
 use Spatie\QueryBuilder\AllowedFilter;
@@ -41,14 +40,15 @@ class Users extends AbstractTable
     public function for()
     {
         $globalSearch = AllowedFilter::callback('global', function ($query, $value) {
-            $query->where(function ($query) use ($value) {
-                Collection::wrap($value)->each(function ($value) use ($query) {
-                    $query
-                        ->orWhere('name', 'LIKE', "%{$value}%")
-                        ->orWhere('username', 'LIKE', "%{$value}%")
-                        ->orWhere('email', 'LIKE', "%{$value}%");
-                });
-            });
+            $query->whereAny(
+                [
+                    'name',
+                    'username',
+                    'email',
+                ],
+                'LIKE',
+                "%{$value}%"
+            );
         });
 
         return QueryBuilder::for(User::class)

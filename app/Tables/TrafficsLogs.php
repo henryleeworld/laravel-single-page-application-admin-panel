@@ -6,7 +6,6 @@ use App\Models\RateLimitDetail;
 use App\Models\TrafficsLog;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Collection;
 use ProtoneMedia\Splade\AbstractTable;
 use ProtoneMedia\Splade\SpladeTable;
 use Spatie\QueryBuilder\AllowedFilter;
@@ -42,13 +41,14 @@ class TrafficsLogs extends AbstractTable
     public function for()
     {
         $globalSearch = AllowedFilter::callback('global', function ($query, $value) {
-            $query->where(function ($query) use ($value) {
-                Collection::wrap($value)->each(function ($value) use ($query) {
-                    $query
-                        ->orWhere('ip', 'LIKE', "%{$value}%")
-                        ->orWhere('created_at', 'LIKE', "%{$value}%");
-                });
-            });
+            $query->whereAny(
+                [
+                    'ip',
+                    'created_at',
+                ],
+                'LIKE',
+                "%{$value}%"
+            );
         });
 
         return QueryBuilder::for(RateLimitDetail::class)

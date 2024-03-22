@@ -25,7 +25,7 @@ class LanguagesSeeder extends Seeder
                 'name' => 'Traditional Chinese',
                 'code' => 'tw',
                 'dir' => 'rtl',
-                'icon' => 'eg',
+                'icon' => 'tw',
                 'status' => 'Active',
             ],
         ];

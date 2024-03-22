@@ -6,7 +6,6 @@ use App\Models\RateLimit;
 use App\Models\Traffic;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Collection;
 use ProtoneMedia\Splade\AbstractTable;
 use ProtoneMedia\Splade\SpladeTable;
 use Spatie\QueryBuilder\AllowedFilter;
@@ -42,18 +41,19 @@ class Traffics extends AbstractTable
     public function for()
     {
         $globalSearch = AllowedFilter::callback('global', function ($query, $value) {
-            $query->where(function ($query) use ($value) {
-                Collection::wrap($value)->each(function ($value) use ($query) {
-                    $query
-                        ->orWhere('traffic_landing', 'LIKE', "%{$value}%")
-                        ->orWhere('ip', 'LIKE', "%{$value}%")
-                        ->orWhere('operating_system', 'LIKE', "%{$value}%")
-                        ->orWhere('code', 'LIKE', "%{$value}%")
-                        ->orWhere('country_code', 'LIKE', "%{$value}%")
-                        ->orWhere('country_name', 'LIKE', "%{$value}%")
-                        ->orWhere('domain', 'LIKE', "%{$value}%");
-                });
-            });
+            $query->whereAny(
+                [
+                    'traffic_landing',
+                    'ip',
+                    'operating_system',
+                    'code',
+                    'country_code',
+                    'country_name',
+                    'domain'
+                ],
+                'LIKE',
+                "%{$value}%"
+            );
         });
 
         return QueryBuilder::for(RateLimit::class)
