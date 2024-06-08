@@ -1,29 +1,23 @@
-@seoTitle(__('Log in'))
+<x-guest-layout>
+    <x-auth-card>
+        <!-- Session Status -->
+        <x-auth-session-status class="mb-4" />
 
-<x-authentication-card>
-    <x-slot:logo>
-        <x-authentication-card-logo />
-    </x-slot>
+        <x-splade-form action="{{ route('login') }}" class="space-y-4">
+            <!-- Email Address -->
+            <x-splade-input id="email" type="email" name="email" :label="__('Email')" required autofocus />
+            <x-splade-input id="password" type="password" name="password" :label="__('Password')" required autocomplete="current-password" />
+            <x-splade-checkbox id="remember_me" name="remember" :label="__('Remember me')" />
 
-    @if($status = session('status'))
-        <div class="mb-4 font-medium text-sm text-green-600">
-            {{ $status }}
-        </div>
-    @endif
+            <div class="flex items-center justify-end">
+                @if (Route::has('password.request'))
+                    <Link class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
+                        {{ __('Forgot your password?') }}
+                    </Link>
+                @endif
 
-    <x-splade-form class="space-y-4">
-        <x-splade-input id="auth" name="auth" :label="__('Username/Email')" required autofocus />
-        <x-splade-input id="password" name="password" type="password" :label="__('Password')" required autocomplete="current-password" />
-        <x-splade-checkbox name="remember">{{ __('Remember me') }}</x-splade-checkbox>
-
-        <div class="flex items-center justify-end mt-4">
-            @if(Route::has('password.request'))
-                <Link href="{{ route('password.request') }}" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                    {{ __('Forgot your password?') }}
-                </Link>
-            @endif
-
-            <x-splade-submit :label="__('Log in')" class="ml-4" />
-        </div>
-    </x-splade-form>
-</x-authentication-card>
+                <x-splade-submit class="ml-3" :label="__('Log in')" />
+            </div>
+        </x-splade-form>
+    </x-auth-card>
+</x-guest-layout>

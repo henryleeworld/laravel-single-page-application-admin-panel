@@ -13,10 +13,8 @@ return new class extends Migration
     {
         Schema::create('rate_limit_details', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id')->nullable();
-            $table->foreign('user_id')->references('id')->on("users")->onDelete('cascade');
-            $table->unsignedBigInteger('rate_limit_id')->nullable();
-            $table->foreign('rate_limit_id')->references('id')->on("rate_limits")->onDelete('cascade');
+            $table->foreignId('user_id')->nullable()->constrained()->onDelete('cascade');
+            $table->foreignId('rate_limit_id')->nullable()->constrained()->onDelete('cascade');
             $table->text('query')->nullable();
             $table->string('url')->nullable()->index();
             $table->string('ip')->index();

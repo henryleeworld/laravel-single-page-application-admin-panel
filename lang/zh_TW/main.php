@@ -62,7 +62,7 @@ return [
     'logout' => '登出',
     'ltr' => '左到右',
     'manage_account' => '管理帳戶',
-    'name' => '姓名',
+    'name' => '名稱',
     'new_password' => '新的密碼',
     'new_user_default_role' => '新的使用者預設角色',
     'operating_system' => '作業系統',

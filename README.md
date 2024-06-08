@@ -1,4 +1,4 @@
-# Laravel 10 單頁應用程式管理面板
+# Laravel 11 單頁應用程式管理面板
 
 能在使用網站時，只載入一個頁面，並在網頁更新時，透過 JavaScript API 同步更新部份網頁，管理面板可以變更許多網站設定，給予不同的使用者有設計、瀏覽、管理等不同角色的權限，方便各種不同的工作與權責的分工。
 
@@ -20,6 +20,10 @@ $ php artisan key:generate
 ```sh
 $ php artisan migrate --seed
 ```
+- 執行 __Artisan__ 指令的 __storage:link__ 來建立連結符號，讓公用可存取的檔案維持在一個目錄中。
+```sh
+$ php artisan storage:link
+```
 - 執行安裝 Vite 和 Laravel 擴充套件引用的依賴項目。
 ```sh
 $ npm install
@@ -28,10 +32,6 @@ $ npm install
 ```sh
 $ npm run build
 ```
-- 執行 __Artisan__ 指令的 __storage:link__ 來建立連結符號，讓公用可存取的檔案維持在一個目錄中。
-```sh
-$ php artisan storage:link
-```
 - 在瀏覽器中輸入已定義的路由 URL 來訪問，例如：http://127.0.0.1:8000。
 - 你可以經由 `/register` 來進行註冊。
 - 完成註冊後，可以經由 `/login` 來進行登入，預設的超級管理員電子郵件和密碼分別為 __admin@admin.com__ 和 __password__ 。
@@ -39,8 +39,8 @@ $ php artisan storage:link
 ----
 
 ## 畫面截圖
-![](https://i.imgur.com/8V7O1K4.png)
+![](https://i.imgur.com/gxd1Mig.png)
 > 登入後會進入管理面板
 
-![](https://i.imgur.com/T15PtmE.png)
+![](https://i.imgur.com/71c9ghx.png)
 > 瞭解使用者到達的網頁或畫面

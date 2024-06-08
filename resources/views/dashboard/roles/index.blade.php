@@ -22,7 +22,7 @@
                         </h3>
                         <x-splade-input name="name" label="{{ __('main.name') }}" required />
                         <x-splade-select name="permissions[]" label="{{ __('main.permissions') }}" :options="$permissions" multiple relation choices required />
-                        <x-splade-submit />
+                        <x-splade-submit label="{{ __('main.submit') }}" />
                     </x-splade-form>
                 </x-splade-modal>
             @endcan

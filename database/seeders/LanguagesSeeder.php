@@ -15,15 +15,15 @@ class LanguagesSeeder extends Seeder
     {
         $languages = [
             [
-                'name' => 'English',
+                'name' => __('English'),
                 'code' => 'en',
                 'dir' => 'ltr',
                 'icon' => 'us',
                 'status' => 'Active',
             ],
             [
-                'name' => 'Traditional Chinese',
-                'code' => 'tw',
+                'name' => __('Traditional Chinese'),
+                'code' => 'zh_TW',
                 'dir' => 'rtl',
                 'icon' => 'tw',
                 'status' => 'Active',

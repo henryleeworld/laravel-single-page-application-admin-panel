@@ -31,7 +31,7 @@
                             <option value="Active">@lang('main.active')</option>
                             <option value="Disabled">@lang('main.disabled')</option>
                         </x-splade-select>
-                        <x-splade-submit />
+                        <x-splade-submit label="{{ __('main.submit') }}" />
                     </x-splade-form>
                 </x-splade-modal>
             @endcan
@@ -43,7 +43,7 @@
                 <x-splade-cell action as="$language">
                     {{-- Update Translations --}}
                     @can('update languages')
-                        <x-nav-link away href="{{ route('translations_ui.index') }}"> 
+                        <x-nav-link away href="{{ url('dashboard/languages/translations') }}"> 
                             @lang('main.translations')
                         </x-nav-link>
                     @endcan
@@ -73,7 +73,7 @@
                                 <option value="Active">@lang('main.active')</option>
                                 <option value="Disabled">@lang('main.disabled')</option>
                             </x-splade-select>
-                            <x-splade-submit />
+                            <x-splade-submit label="{{ __('main.submit') }}" />
                         </x-splade-form>
                     </x-splade-modal>
 

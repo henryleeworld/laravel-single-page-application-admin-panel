@@ -20,27 +20,6 @@
                         <h3 class="text-xl font-medium text-gray-900">
                             @lang('main.profile_information')
                         </h3>
-                        {{-- Profile Photo --}}
-                        @if(Laravel\Jetstream\Jetstream::managesProfilePhotos())
-                            <div class="col-span-6 sm:col-span-4">
-                                <span class="block mb-1 text-gray-700 font-sans">@lang('main.photo')</span>
-
-                                {{-- New Profile Photo Preview --}}
-                                <div v-show="form.photo" class="mt-2">
-                                    <span
-                                        class="block rounded-full w-20 h-20 bg-cover bg-no-repeat bg-center"
-                                        :style="'background-image: url(\'' + form.$fileAsUrl('photo') + '\');'"
-                                    />
-                                </div>
-        
-                                {{-- Profile Photo File Input --}}
-                                <div class="flex mt-2 space-x-2">
-                                    <x-splade-file name="photo" :show-filename="false">
-                                        @lang('main.select_a_new_photo')
-                                    </x-splade-file>
-                                </div>
-                            </div>
-                        @endif
                         {{-- Name --}}
                         <x-splade-input v-model="form.name" name="name" :label="__('main.name')" autocomplete="name" required />
                         {{-- Username --}}

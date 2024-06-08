@@ -9,5 +9,10 @@ class Setting extends Model
 {
     use HasFactory;
 
-    protected $guarded = ['id','created_at','updated_at'];
+    /**
+     * The attributes that aren't mass assignable.
+     *
+     * @var array
+     */
+    protected $guarded = ['id', 'created_at', 'updated_at'];
 }

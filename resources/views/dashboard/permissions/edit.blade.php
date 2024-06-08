@@ -9,7 +9,7 @@
             <x-splade-form :action="route('dashboard.permissions.update', $permission)" method="PUT" :default="$permission" class="space-y-4">
                 <x-splade-input name="name" label="{{ __('main.name') }}" required />
                 <x-splade-select name="roles[]" label="{{ __('main.roles') }}" :options="$roles" multiple relation choices />
-                <x-splade-submit />
+                <x-splade-submit label="{{ __('main.submit') }}" />
             </x-splade-form>
         </div>
     </div>
