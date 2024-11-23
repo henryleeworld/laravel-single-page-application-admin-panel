@@ -6,7 +6,7 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
-        "laravel/framework": "^11.9",
+        "laravel/framework": "^11.10",
         "laravel/tinker": "^2.9",
         "nwidart/laravel-modules": "^11.0",
         "outhebox/laravel-translations": "^1.1.8",
@@ -23,7 +23,7 @@
         "laravel/sail": "^1.29",
         "mockery/mockery": "^1.6",
         "nunomaduro/collision": "^8.1",
-        "phpunit/phpunit": "^11.1",
+        "phpunit/phpunit": "^11.2",
         "protonemedia/laravel-dusk-fakes": "^1.6"
     },
     "autoload": {
